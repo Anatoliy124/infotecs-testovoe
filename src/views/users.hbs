@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список пользователей</title>
+  <style>
+    table {
+      width: 100%;
+      max-width: 1200px;
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    button {
+      margin: 15px;
+    }
+  </style> 
+</head>
+<body>
+  <h1 style="text-align: center;">Список пользователей</h1>
+  <div style="display: flex; justify-content: center; align-items: center; margin: 15px;">
+    <form action="/users/filterUsers" method="POST">
+      <label for="key">Ключ:</label>
+      <input type="text" id="key" name="key" placeholder="например, hair.color">
+      <label for="value">Значение:</label>
+      <input type="text" id="value" name="value" placeholder="например, Brown">
+      <input type="submit" value="Фильтр">
+    </form>
+ <form action="/users/filterByName" method="GET">
+  <label for="filter">filter by name:</label>
+  <select id="order" name="order" onchange="this.form.submit()">
+    <option value="default">default</option>
+    <option value="Ascending">Ascending</option>
+    <option value="descending">descending</option>
+  </select>
+</form>
+  <form action="/users/filterByAge" method="GET">
+  <label for="filterAge">filter by age:</label>
+  <select id="filterAge" name="filterAge" onchange="this.form.submit()">
+    <option value="default">default</option>
+    <option value="ascending">ascending</option>
+    <option value="descending">descending</option>
+  </select>
+</form>
+  <form action="/users/filterByGender" method="GET">
+  <label for="filterGender">filter by gender:</label>
+  <select id="filterGender" name="filterGender" onchange="this.form.submit()">
+    <option value="default">default</option>
+    <option value="ascending">ascending</option>
+    <option value="descending">descending</option>
+  </select>
+</form>
+  <form action="/users/filterByAdress" method="GET">
+  <label for="filterAdress">filter by adress:</label>
+  <select id="filterAdress" name="filterAdress" onchange="this.form.submit()">
+    <option value="default">default</option>
+    <option value="ascending">ascending</option>
+    <option value="descending">descending</option>
+  </select>
+</form>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>maidenName</th>
+        <th>age</th>
+        <th>gender</th>
+        <th>city</th>
+        <th>address</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+        <tr>
+          <td>{{firstName}}</td>
+          <td>{{lastName}}</td>
+          <td>{{maidenName}}</td>
+          <td>{{age}}</td>
+          <td>{{gender}}</td>
+          <td>{{city}}</td>
+          <td>{{address}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</body>
+</html>
